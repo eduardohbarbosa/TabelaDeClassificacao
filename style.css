@@ -1,0 +1,142 @@
+@charset "UTF-8";
+
+body{
+    background-color: steelblue;
+}
+
+div#divTabela{
+    width: 1200px;
+    background-color: rgba(0, 0, 0, 0.384);
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+table{
+    margin: auto;
+    text-align: center;
+    border: 2px solid white ;
+    border-collapse: collapse;
+    color: white;
+}
+
+th, tr, td{
+    width: 220px;
+    padding: 5px;
+    border: 1px solid white ;
+    font-size: 1.2em;
+}
+
+td > button{
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    background: rgb(0,172,238);
+    background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+    margin: 0px 2px;
+    font-weight: bold;
+    color: #fff;
+}
+
+div#acoes{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.384);
+    text-align: center;
+}
+
+/*Configuração dos botões de fora da Table*/
+.btnAcao{
+    position: relative;
+    display: inline-block;
+    outline: none;
+    width: 135px;
+    height: 40px;
+    cursor: pointer;
+    margin: 20px;
+    padding: 0;
+    border-radius: 5px;
+    border: none;
+    background: rgb(0,172,238);
+    background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+    line-height: 42px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.btnAcao span {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.btnAcao:before, .btnAcao:after {
+    position: absolute;
+    content: "";
+    right: 0;
+    top: 0;
+    background: rgba(2,126,251,1);
+    transition: all 0.3s ease;
+}
+
+.btnAcao:before {
+    height: 0%;
+    width: 2px;
+}
+
+.btnAcao:after {
+    width: 0%;
+    height: 2px;
+}
+
+.btnAcao:hover{
+    background: white;
+    box-shadow: none;
+}
+
+.btnAcao:before {
+    height: 100%;
+}
+
+.btnAcao:hover:after {
+    width: 100%;
+}
+
+.btnAcao span:hover{
+    color: rgba(2,126,251,1);
+}
+
+.btnAcao span:before, .btnAcao span:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: 0;
+    background: rgba(2,126,251,1);
+    transition: all 0.3s ease;
+}
+
+.btnAcao span:before {
+    width: 2px;
+    height: 0%;
+}
+
+.btnAcao span:after {
+    width: 0%;
+    height: 2px;
+
+}
+
+.btnAcao span:hover:before {
+    height: 100%;
+}
+
+.btnAcao span:hover:after {
+    width: 100%;
+}
