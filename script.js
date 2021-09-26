@@ -12,7 +12,7 @@ function jogadorExiste(jogador){
     return false
 }
 
-/*Exibe o jogador na tela*/
+//Exibe o jogador na tela
 function exbirJogador(){
     var camposTabela = ''
     for(var i = 0; i < listaJogadores.length; i++){    
@@ -23,9 +23,9 @@ function exbirJogador(){
         camposTabela += `<td>${listaJogadores[i].derrotas}</td>`
         camposTabela += `<td>${listaJogadores[i].pontos}</td>`
         camposTabela += `<td>`
-        camposTabela += `<button onclick="adicionarVitoria()">Vitoria</button>`
-        camposTabela += `<button onclick="adicionarEmpate()">Empate</button>`
-        camposTabela += `<button onclick="adicionarDerrota()">Derrota</button>`
+        camposTabela += `<button onclick="adicionarVitoria(${i})">Vitoria</button>`
+        camposTabela += `<button onclick="adicionarEmpate(${i})">Empate</button>`
+        camposTabela += `<button onclick="adicionarDerrota(${i})">Derrota</button>`
         camposTabela += `</td>`
         camposTabela += `</tr>`
     }
@@ -34,13 +34,15 @@ function exbirJogador(){
     tabelaJogadores.innerHTML = camposTabela
 }
 
-/*Cria o input e o botão de criação de um novo jogador*/
+//FUNÇÕES DE CRIAÇÃO DE JOGADOR
+
+//Cria o input e o botão de criação de um novo jogador
 function adicionarJogador(){
     divAcoes.innerHTML = `<p>Nome do Jogador: <input type="txt" id="nomeJogador"></p>`
     divAcoes.innerHTML += `<button class="btnAcao" onclick="criarJogador(nomeJogador.value)"><span>Adicionar<span></button>`
 }
 
-/*Cria o objeto do jogador com nome, numero de vitorias, empates e derrotas e seu pontos*/
+//Cria o objeto do jogador com nome, numero de vitorias, empates e derrotas e seu pontos
 function criarJogador(jogador){
     var jogadorNaLista = jogadorExiste(jogador)
 
@@ -63,12 +65,15 @@ function criarJogador(jogador){
     divAcoes.innerHTML += `<button class="btnAcao" onclick="excluirJogador()"><span>Excluir Jogador</span></button>`
 }
 
-/*Cria o input e o botão de exclusão de um novo jogador*/
+//FUNÇÕES PARA EXCLUIR UM JOGADOR EXISTE
+
+//Cria o input e o botão de exclusão de um novo jogador
 function excluirJogador(){
     divAcoes.innerHTML = `<p>Nome do Jogador: <input type="txt" id="nomeJogador"></p>`
     divAcoes.innerHTML += `<button class="btnAcao" onclick="deletarJogador(nomeJogador.value)"><span>Adicionar<span></button>`
 }
 
+//Exclui o jogador da lista e atualiza a exibição
 function deletarJogador(jogador){
     var jogadorNaLista = jogadorExiste(jogador)
 
@@ -86,4 +91,45 @@ function deletarJogador(jogador){
 
     divAcoes.innerHTML = `<button class="btnAcao" onclick="adicionarJogador()"><span>Novo Jogador</span></button>`
     divAcoes.innerHTML += `<button class="btnAcao" onclick="excluirJogador()"><span>Excluir Jogador</span></button>`
+}
+
+//FUNÇÕES DE PONTUAÇÕES
+function calculaPontos(jogador){
+    var pontos = jogador.vitorias * 3 + jogador.empates
+    return pontos
+}
+
+function adicionarVitoria(i){
+    var jogador = listaJogadores[i]
+    jogador.vitorias++
+    jogador.pontos = calculaPontos(jogador)
+    exbirJogador()
+}
+
+function adicionarEmpate(i){
+    var jogador = listaJogadores[i]
+    jogador.empates++
+    jogador.pontos = calculaPontos(jogador)
+    exbirJogador()
+}
+
+function adicionarDerrota(i){
+    var jogador = listaJogadores[i]
+    jogador.derrotas++
+    exbirJogador()
+}
+
+function finalizar(){
+    var divTabela = document.querySelector("#divTabela")
+    var classificacao = []
+
+    for (i = 0; i < listaJogadores.length; i++){
+        if(classificacao.length == 0){
+            classificacao.push(listaJogadores[i])
+        }else if(listaJogadores[i].pontos > classificacao[0].pontos){
+            classificacao[0] = listaJogadores[i]
+        }
+    }
+
+    alert(classificacao[0].nome)
 }
