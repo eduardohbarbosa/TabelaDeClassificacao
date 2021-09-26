@@ -49,6 +49,17 @@ div#acoes{
     text-align: center;
 }
 
+p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+}
+
+input{
+    padding: 5px;
+}
+
 /*Configuração dos botões de fora da Table*/
 .btnAcao{
     position: relative;

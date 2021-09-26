@@ -119,6 +119,8 @@ function adicionarDerrota(i){
     exbirJogador()
 }
 
+
+//FUNÇÕES DE FINALIZAR A TABELA
 function finalizar(){
     var divTabela = document.querySelector("#divTabela")
     var classificacao = []
@@ -128,8 +130,26 @@ function finalizar(){
             classificacao.push(listaJogadores[i])
         }else if(listaJogadores[i].pontos > classificacao[0].pontos){
             classificacao[0] = listaJogadores[i]
+        }else if(listaJogadores[i].pontos == classificacao[0].pontos){
+            classificacao.push(listaJogadores[i])
         }
     }
 
-    alert(classificacao[0].nome)
+    divTabela.innerHTML = ""
+
+    if (classificacao.length == 1){
+        divTabela.innerHTML += `<p>Vencedor ${classificacao[0].nome} com ${classificacao[0].pontos} pontos.</p>`
+    }else if (classificacao.length > 1){
+        divTabela.innerHTML += `<p>Empate entre:</p>`
+        for(i = 0; i < classificacao.length; i++){
+            divTabela.innerHTML += `${classificacao[i].nome} com ${classificacao[i].pontos} pontos.</p>`
+        }
+    }
+    
+
+    divTabela.innerHTML += `<button class="btnAcao" onclick="jogarNovamente()"><span>Reiniciar</span></button>`
+}
+
+function jogarNovamente(){
+    document.location.reload()
 }
